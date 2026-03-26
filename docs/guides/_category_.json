@@ -1,0 +1,8 @@
+{
+  "label": "Guides & Tutorials",
+  "position": 1,
+  "link": {
+    "type": "generated-index",
+    "description": "Learn how to use ViralToby — from setting up your first brand to mastering Toby's autonomous content generation."
+  }
+}
