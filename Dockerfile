@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm ci
 COPY . .
-RUN npm run build
+RUN npm run build && ls -la build/index.html
 
 FROM nginx:alpine
 COPY --from=builder /app/build /usr/share/nginx/html
