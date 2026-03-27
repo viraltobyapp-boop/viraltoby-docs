@@ -32,7 +32,6 @@ const config: Config = {
         docs: {
           sidebarPath: './sidebars.ts',
           routeBasePath: '/',
-          editUrl: 'https://github.com/viraltobyapp-boop/viraltoby-docs/edit/main/',
         },
         blog: false,
         theme: {
@@ -46,7 +45,8 @@ const config: Config = {
     image: 'img/vt-logo.png',
     colorMode: {
       defaultMode: 'light',
-      respectPrefersColorScheme: true,
+      disableSwitch: false,
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: 'ViralToby',
