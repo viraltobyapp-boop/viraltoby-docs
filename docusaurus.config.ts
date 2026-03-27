@@ -62,12 +62,6 @@ const config: Config = {
           label: 'Guides',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'architectureSidebar',
-          position: 'left',
-          label: 'Architecture (Admin)',
-        },
-        {
           href: 'https://viraltoby.com',
           label: 'Back to App',
           position: 'right',
@@ -86,11 +80,10 @@ const config: Config = {
           ],
         },
         {
-          title: 'Architecture',
+          title: 'Resources',
           items: [
-            { label: 'System Overview', to: '/architecture/system-overview' },
-            { label: 'API Reference', to: '/architecture/api-reference' },
-            { label: 'Database Schema', to: '/architecture/database-schema' },
+            { label: 'FAQ', href: 'https://viraltoby.com/faq' },
+            { label: 'Contact', href: 'https://viraltoby.com/contact' },
           ],
         },
         {
