@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Developer Access — ViralToby</title>
+  <link rel="icon" href="/img/vt-logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #141413;
+      color: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      -webkit-font-smoothing: antialiased;
+    }
+    .card {
+      width: 100%;
+      max-width: 380px;
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #1c1c1a;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 0.75rem;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .header { text-align: center; margin-bottom: 1.5rem; }
+    .header h2 { font-size: 1.25rem; font-weight: 700; }
+    .header p { font-size: 0.8125rem; color: rgba(245,245,245,0.4); margin-top: 0.375rem; }
+    label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: rgba(245,245,245,0.7);
+      margin-bottom: 0.375rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: #141413;
+      color: #f5f5f5;
+      font-size: 0.875rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: #a78bfa; }
+    .field { margin-bottom: 0.75rem; }
+    .field:last-of-type { margin-bottom: 1rem; }
+    .error {
+      color: #dc2626;
+      font-size: 0.8125rem;
+      margin-bottom: 0.75rem;
+      display: none;
+    }
+    button {
+      width: 100%;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      border: none;
+      background: #a78bfa;
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    button:hover { opacity: 0.9; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="header">
+      <div class="logo">VT</div>
+      <h2>Developer Access</h2>
+      <p>Sign in with your ViralToby account</p>
+    </div>
+    <form id="login-form">
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" required autocomplete="email" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required autocomplete="current-password" />
+      </div>
+      <p class="error" id="error"></p>
+      <button type="submit" id="btn">Sign In</button>
+    </form>
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+
+    const supabase = createClient(
+      'https://kzsbyzroknbradzyjvrc.supabase.co',
+      'sb_publishable_mAlx86VQ7KfMuxwuwY8Jbg_CSEteHtm'
+    );
+
+    const form = document.getElementById('login-form');
+    const errorEl = document.getElementById('error');
+    const btn = document.getElementById('btn');
+
+    // Check if already logged in
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session) {
+      setCookieAndRedirect(session.access_token);
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorEl.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Signing in...';
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+
+      if (error) {
+        errorEl.textContent = 'Invalid credentials. Use your ViralToby account.';
+        errorEl.style.display = 'block';
+        btn.disabled = false;
+        btn.textContent = 'Sign In';
+        return;
+      }
+
+      setCookieAndRedirect(data.session.access_token);
+    });
+
+    function setCookieAndRedirect(token) {
+      // Set cookie valid for 7 days
+      const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toUTCString();
+      document.cookie = `vt_auth=${token}; path=/; expires=${expires}; SameSite=Lax`;
+
+      // Redirect to original page
+      const params = new URLSearchParams(window.location.search);
+      const next = params.get('next') || '/architecture/system-overview';
+      window.location.href = next;
+    }
+  </script>
+</body>
+</html>

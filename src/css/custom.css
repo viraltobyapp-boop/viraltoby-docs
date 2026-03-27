@@ -419,10 +419,27 @@ table tr:last-child td {
 }
 
 /* ==================== */
+/* LAYOUT               */
+/* ==================== */
+
+/* Ensure main content pushes footer down — prevents overlap on long pages */
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--ifm-navbar-height));
+}
+
+.docMainContainer_TBSr,
+[class*="docMainContainer"] {
+  flex: 1 0 auto;
+}
+
+/* ==================== */
 /* FOOTER               */
 /* ==================== */
 
 .footer {
+  flex-shrink: 0;
   background: var(--ifm-footer-background-color);
   border-top: none;
 }
