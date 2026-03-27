@@ -146,11 +146,17 @@ html {
   display: none;
 }
 
+.navbar__item[class*="right"] {
+  display: flex;
+  align-items: center;
+}
+
 .navbar__link[href*="://"]::after {
   content: ' \2197';
   font-size: 0.75em;
-  vertical-align: super;
+  vertical-align: baseline;
   margin-left: 0.125rem;
+  line-height: 1;
 }
 
 /* ==================== */
