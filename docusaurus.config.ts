@@ -65,7 +65,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'architectureSidebar',
           position: 'left',
-          label: 'Architecture',
+          label: 'Architecture (Admin)',
         },
         {
           href: 'https://viraltoby.com',
