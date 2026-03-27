@@ -134,5 +134,11 @@ table th {
   }
 }
 
-/* Inter font import */
+/* Inter font — force everywhere */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+html, body, .navbar, .menu, .footer,
+.markdown, .table-of-contents,
+h1, h2, h3, h4, h5, h6, p, li, td, th, a, span, div {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+}
