@@ -100,6 +100,3 @@ You maintain full control — nothing gets published without your approval.
 | **TikTok** | TikTok OAuth | Videos |
 | **Bluesky** | App Password | Text Posts |
 
-## Architecture (For Developers)
-
-If you're part of the development team, check out the [Architecture](/architecture/system-overview) section for deep technical documentation on how ViralToby works under the hood.

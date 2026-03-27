@@ -56,12 +56,6 @@ const config: Config = {
       },
       items: [
         {
-          type: 'docSidebar',
-          sidebarId: 'guidesSidebar',
-          position: 'left',
-          label: 'Guides',
-        },
-        {
           href: 'https://viraltoby.com',
           label: 'Back to App',
           position: 'right',
