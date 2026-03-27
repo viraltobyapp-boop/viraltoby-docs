@@ -140,6 +140,19 @@ html {
   color: var(--vt-text-primary);
 }
 
+/* External link icon alignment (Back to App) */
+.navbar__item .navbar__link[href*="://"] svg,
+.navbar__link[target="_blank"] svg {
+  display: none;
+}
+
+.navbar__link[href*="://"]::after {
+  content: ' \2197';
+  font-size: 0.75em;
+  vertical-align: super;
+  margin-left: 0.125rem;
+}
+
 /* ==================== */
 /* SIDEBAR              */
 /* ==================== */
