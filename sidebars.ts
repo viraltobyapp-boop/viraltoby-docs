@@ -52,6 +52,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'architecture/toby-agent-system',
         'architecture/content-pipeline',
+        'architecture/pipeline-system',
         'architecture/media-rendering',
       ],
     },
