@@ -30,6 +30,7 @@ const sidebars: SidebarsConfig = {
         'guides/using-toby',
         'guides/analytics',
         'guides/billing',
+        'guides/support',
       ],
     },
   ],
@@ -72,6 +73,7 @@ const sidebars: SidebarsConfig = {
       items: [
         'architecture/local-development',
         'architecture/deployment',
+        'architecture/admin-system',
       ],
     },
   ],
